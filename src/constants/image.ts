@@ -1,5 +1,4 @@
-// 이미지
-import backGroundImage from "@/assets/images/background.png";
+
 import hero from "@/assets/logo/hero.jpeg";
 import logo from "@/assets/logo/logo.png";
 import louderOli from "@/assets/logo/loudOli.png";
@@ -10,7 +9,6 @@ import emptyOliImage from "@/assets/logo/oliBodyEmpty.webp";
 import shockedOliIcon from "@/assets/logo/shockedOli.png";
 
 const IMAGE_MAP = {
-    background: backGroundImage,
     heroImage : hero,
     logoImage : logo,
     oliIcon : oliIcon,
