@@ -5,7 +5,6 @@ import louderOli from "@/assets/logo/loudOli.png";
 import oliIcon from "@/assets/logo/oli.png";
 import oliIconWithWebp from "@/assets/logo/oli.webp";
 import mainOli from "@/assets/logo/oliBody.png";
-import emptyOliImage from "@/assets/logo/oliBodyEmpty.webp";
 import shockedOliIcon from "@/assets/logo/shockedOli.png";
 
 const IMAGE_MAP = {
@@ -16,7 +15,6 @@ const IMAGE_MAP = {
     theMostShockedOliIcon : shockedOliIcon,
     oliIconWithWebp : oliIconWithWebp,
     mainOliImage : mainOli,
-    emptyOliImage :emptyOliImage
 }
 
 export default IMAGE_MAP
