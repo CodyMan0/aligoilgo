@@ -7,9 +7,11 @@ import Header from '@/components/common/header/Header';
 import { Typography } from '@/components/common/typography/Typography';
 import UserProfile from '@/components/feature/my/userProfile/UserProfile';
 import useGetOwnInfo from '@/hooks/api/target/useGetOwnInfo';
+import useAuth from '@/hooks/auth/useAuth';
 
 const Mypage = () => {
   const { myInfo, sortedStatistics } = useGetOwnInfo();
+  const { logout } = useAuth();
 
   return (
     <div className="relative flex flex-col px-6 h-dvh">
@@ -71,7 +73,7 @@ const Mypage = () => {
             </div>
           </button>
           <button className="h-12 text-left " onClick={() => {}}>
-            <Typography type="body2" className="text-gray-800">
+            <Typography type="body2" className="text-gray-800" onClick={logout}>
               로그아웃
             </Typography>
           </button>
