@@ -22,6 +22,7 @@ export const ROUTER_PATHS = {
   SIGNIN: '/signin',
   SIGNUP: '/signup',
   SIGNIN_REDIRECT_KAKAO: '/kakao',
+  TAGET_DETAIL: `/target/:id`,
   TARGET: '/target',
   CREATE_TARGET: '/target/create',
   MYPAGE: '/mypage',

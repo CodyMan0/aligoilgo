@@ -1,13 +1,10 @@
-import type { SVGProps } from "react";
+import type { SVGProps } from 'react';
 
 interface SpinnerProps extends SVGProps<SVGSVGElement> {
   color?: string;
 }
 //TODO : 색 수정 및 디테일 수정해야합니다.
-export const Spinner = ({
-  color = "text-mainDeep",
-  ...props
-}: SpinnerProps) => {
+export const Spinner = ({ color = 'text-gray-10', ...props }: SpinnerProps) => {
   return (
     <svg
       className={`size-[30px] animate-spin ${color}`}
@@ -16,14 +13,7 @@ export const Spinner = ({
       viewBox="0 0 24 24"
       {...props}
     >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="4"
-      />
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
       <path
         className="opacity-75"
         fill="currentColor"

@@ -1,8 +1,7 @@
 import DatePicker from 'react-datepicker';
 import { useFormContext } from 'react-hook-form';
 
-import { fromNowOfMaxDays, fromNowOfMinDays } from '@/utils/date';
-import { createDate, getDayName } from '../../../utils/formatDate';
+import { fromNowOfMaxDays, fromNowOfMinDays, getKrDateName } from '@/utils/date';
 import CalenderHeader from './CalenderHeader';
 
 const DatePickerComponent = () => {
@@ -25,9 +24,9 @@ const DatePickerComponent = () => {
         <CalenderHeader date={date} decreaseMonth={decreaseMonth} increaseMonth={increaseMonth} />
       )}
       dayClassName={(date) =>
-        getDayName(createDate(date)) === '토'
+        getKrDateName(date) === '토요일'
           ? 'saturday'
-          : getDayName(createDate(date)) === '일'
+          : getKrDateName(date) === '일요일'
           ? 'sunday'
           : null
       }

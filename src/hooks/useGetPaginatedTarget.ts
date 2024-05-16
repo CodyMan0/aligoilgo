@@ -1,12 +1,13 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 import targetAPI from '@/api/target/apis';
+
 
 const INITIAL_PAGE_NO = 0;
 const COMMENT_COUNT_PER_PAGE = 5;
 
-const useGetPaginatedTarget = () => {
-  return useInfiniteQuery({
+const useFilteringSeed = () => {
+  const { data: seeds, fetchNextPage }  =  useSuspenseInfiniteQuery({
     queryKey: ['seed'],
     initialPageParam: { page: INITIAL_PAGE_NO, size: COMMENT_COUNT_PER_PAGE },
     queryFn: ({ pageParam }) =>
@@ -27,6 +28,8 @@ const useGetPaginatedTarget = () => {
 
     select: (data) => (data.pages ? data.pages.map((page) => page.seedInfo).flat() : []),
   });
+
+  return { seeds, fetchNextPage}  
 };
 
-export default useGetPaginatedTarget;
+export default useFilteringSeed;

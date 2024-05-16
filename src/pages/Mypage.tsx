@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import ChevronRight from '@/assets/icon/ChevronRight';
 import FruitsStage from '@/assets/icon/FruitsStage';
 import SeedStage from '@/assets/icon/SeedStage';
@@ -6,6 +8,7 @@ import TreeStage from '@/assets/icon/TreeStage';
 import Header from '@/components/common/header/Header';
 import { Typography } from '@/components/common/typography/Typography';
 import UserProfile from '@/components/feature/my/userProfile/UserProfile';
+import { USER_FEEDBACK_GOOGLE_FORM_URL } from '@/constants/extarnelUrl';
 import useGetOwnInfo from '@/hooks/api/target/useGetOwnInfo';
 import useAuth from '@/hooks/auth/useAuth';
 
@@ -65,9 +68,11 @@ const Mypage = () => {
           <button className="h-12 text-left border-b" onClick={() => {}}>
             <div className="flex justify-between items-center">
               <div className="flex gap-2 items-center">
-                <Typography type="body2" className="text-gray-800">
-                  씨앗 모아에게 피드백 보내기
-                </Typography>
+                <Link to={USER_FEEDBACK_GOOGLE_FORM_URL}>
+                  <Typography type="body2" className="text-gray-800">
+                    씨앗 모아에게 피드백 보내기
+                  </Typography>
+                </Link>
               </div>
               <ChevronRight fill="#8490A0" width={8} />
             </div>

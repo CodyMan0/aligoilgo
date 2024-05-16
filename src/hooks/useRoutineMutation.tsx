@@ -15,6 +15,10 @@ const useRoutineMutation = (seedId: number) => {
         queryKey: targetOptions.detailTarget(seedId).queryKey,
         refetchType: 'all',
       });
+      await queryClient.invalidateQueries({
+        queryKey: targetOptions.all,
+        refetchType: 'all',
+      });
       toast({ message: 'SEED_ROUTINE_STATE_SUCCESS' });
     },
     onError: () => {

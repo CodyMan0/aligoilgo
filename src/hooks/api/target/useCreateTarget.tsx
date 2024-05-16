@@ -13,7 +13,7 @@ const useCreateSeedMutation = () => {
   const navigate = useNavigate();
   const toast = useToast();
 
-  const { mutate: submitSeed } = useMutation({
+  const { mutate: submitSeed, isPending } = useMutation({
     mutationFn: ({ seed, routines, endDate }: SeedResponseType) =>
       targetAPI.postSeed({ seed, routines, endDate }),
     onSuccess: async () => {
@@ -30,7 +30,7 @@ const useCreateSeedMutation = () => {
       toast({ message: 'SEED_CREATE_FAIL' });
     },
   });
-  return { submitSeed };
+  return { submitSeed, isPending };
 };
 
 export default useCreateSeedMutation;

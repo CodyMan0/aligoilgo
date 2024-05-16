@@ -30,23 +30,23 @@ const Routine = ({ toNext }: RoutineProps) => {
 
   const routineWatch = watch('routines');
   const minRoutineCount = routineWatch.length === 1;
-  // const maxRoutineCount = routineWatch.length < 3;
+  const maxRoutineCount = routineWatch.length < 3;
 
   return (
     <TargetCreateLayout title={ROUTINE_TITLE} description={ROUTINE_DESCRIPTION}>
       <div className="flex items-center justify-between">
-        <Typography type="heading3">매일 지킬 루틴 (최대 3개)</Typography>
-        {/* {maxRoutineCount && ( */}
-        <button
-          className="text-2xl text-mainDeep pl-4"
-          type="button"
-          onClick={() => {
-            routineAppend({});
-          }}
-        >
-          <Add width={16} height={16} color="#ffffff" />
-        </button>
-        {/* )} */}
+        <Typography type="heading3">열매 맺기 위한 루틴 (최대 3개)</Typography>
+        {maxRoutineCount && (
+          <button
+            className="text-2xl text-mainDeep pl-4"
+            type="button"
+            onClick={() => {
+              routineAppend({});
+            }}
+          >
+            <Add width={16} height={16} color="#ffffff" />
+          </button>
+        )}
       </div>
 
       {routines.map((routine, index) => (

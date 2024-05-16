@@ -1,0 +1,1 @@
+export const USER_FEEDBACK_GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScUb0e-hP4UbRZLBB2UmTc9uENUFy7wTnj1Wq4VT4tLSa47vQ/viewform?usp=sf_link'

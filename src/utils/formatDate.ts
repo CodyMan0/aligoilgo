@@ -41,11 +41,7 @@ export const getNowDate = () => {
 	return nowDateToString;
 };
 
-export const createDate = (date: Date) => {
-	return new Date(
-		new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0)
-	);
-};
+
 
 // 요일 반환
 export const getDayFromDiff = (present: string, future: string) => {
@@ -57,14 +53,7 @@ export const getDayFromDiff = (present: string, future: string) => {
 	return Math.floor(Math.abs(diffDate / (1000 * 60 * 60 * 24)));
 };
 
-// 요일 반환
-export const getDayName = (date: Date) => {
-	return date
-		.toLocaleDateString("ko-KR", {
-			weekday: "long",
-		})
-		.substr(0, 1);
-};
+
 
 export const getDateRange = (startDate: string, endDate: string): string[] => {
 	const start = new Date(startDate);

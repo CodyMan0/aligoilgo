@@ -7,7 +7,7 @@ type RainProps = {
 
 const Rain = ({ position, size }: RainProps) => {
   return (
-    <span className={`absolute w-fit h-fit inset-y-0 ${position.x} ${position.y}`}>
+    <span className={`absolute ${position.x} ${position.y}`}>
       <Droplet width={size} />
     </span>
   );

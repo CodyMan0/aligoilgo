@@ -2,11 +2,11 @@ import Rain from '@/components/common/rain';
 import { useRoutineContext } from '@/context/RoutineContext';
 
 const RainBackGround = () => {
-  const { isOpen } = useRoutineContext();
+  const { isRainOpen } = useRoutineContext();
 
   return (
     <>
-      {isOpen && (
+      {isRainOpen && (
         <>
           <Rain size={14} position={{ x: 'left-[10px]', y: 'top-0' }} />
           <Rain size={26} position={{ x: 'right-[80px]', y: 'top-[10px]' }} />

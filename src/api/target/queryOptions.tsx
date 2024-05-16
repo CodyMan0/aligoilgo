@@ -12,11 +12,12 @@ const targetOptions = {
       queryKey: [...targetOptions.all] as const,
       queryFn: () => targetAPI.getAllPaginatedTargets({ page, size }),
     }),
-  detailTarget: (seedId: number) =>
-    queryOptions({
+  detailTarget: (seedId: number, callQueryFn?: boolean) => {
+    return queryOptions({
       queryKey: [...targetOptions.all, seedId] as const,
-      queryFn: () => targetAPI.getSeedDetails(seedId),
-    }),
+      queryFn: callQueryFn ? () => targetAPI.getSeedDetails(seedId) : undefined,
+    });
+  },
 
   totalInfo: () =>
     queryOptions({

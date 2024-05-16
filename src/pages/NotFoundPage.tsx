@@ -3,7 +3,7 @@ import { Link, isRouteErrorResponse, useRouteError } from 'react-router-dom';
 import IMAGE_MAP from '@/constants/image';
 import logo from '../assets/logo/hero.jpeg';
 
-const NotFound = () => {
+const NotFoundPage = () => {
   const error = useRouteError();
 
   if (isRouteErrorResponse(error)) {
@@ -33,4 +33,4 @@ const NotFound = () => {
   }
 };
 
-export default NotFound;
+export default NotFoundPage;

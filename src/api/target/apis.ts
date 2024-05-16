@@ -18,7 +18,7 @@ const targetAPI = {
   },
 
   /** 상세 씨앗 정보 조회 */
-  getSeedDetails: async (seedId: number) => {
+getSeedDetails: async (seedId: number) => {
     const { data } = await authInstance.get<DetailSeedType>(API_PATHS.SEED_DETAIL(seedId));
     return data;
   },

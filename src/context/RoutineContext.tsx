@@ -1,15 +1,21 @@
 import { createContext, PropsWithChildren, useContext, useState } from 'react';
 
 const RoutineContext = createContext<{
-  isOpen: boolean;
-  onClose: VoidFunction;
+  isRainOpen: boolean;
+  onRainBgOpen: VoidFunction;
+  onRainBgClose: VoidFunction;
 } | null>(null);
 
 export const RoutineProvider = ({ children }: PropsWithChildren) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const onClose = () => setIsOpen((prev) => !prev);
+  const [isRainOpen, setIsRainOpen] = useState(false);
+  const onRainBgOpen = () => setIsRainOpen(true);
+  const onRainBgClose = () => setIsRainOpen(false);
 
-  return <RoutineContext.Provider value={{ isOpen, onClose }}>{children}</RoutineContext.Provider>;
+  return (
+    <RoutineContext.Provider value={{ isRainOpen, onRainBgOpen, onRainBgClose }}>
+      {children}
+    </RoutineContext.Provider>
+  );
 };
 
 export const useRoutineContext = () => {
