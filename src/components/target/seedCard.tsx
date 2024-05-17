@@ -25,9 +25,12 @@ const SeedCard = ({ id, seed, seedState, endDate, routineInfos }: PreviewSeedTyp
     <li
       className={cn(
         `flex flex-col w-full min-h-48 rounded-xl border border-gray-100 p-3 cursor-pointer bg-gray-10 `,
-        `${!isActive && 'bg-[#EBF0FF]'}`,
+        `${!isActive && 'bg-[#EBF0FF] cursor-auto'}`,
       )}
-      onClick={() => navigate(`/target/${id}`)}
+      onClick={() => {
+        if (!isActive) return;
+        navigate(`/target/${id}`);
+      }}
     >
       {/* CARD HEADER */}
       <div className="w-full flex justify-between">

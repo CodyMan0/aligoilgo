@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 
 export const DELAY_SECOND = 4000;
+export const TOOLTIP_DELAY_SECOND = 3000;
 
 
 

@@ -27,18 +27,39 @@ authInstance.interceptors.request.use((config) => {
   return config;
 });
 
+// ReIssue API에 대한 에러 처리
+baseInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    if (isAxiosError(error)) {
+      console.log('error.response?.data',error.response?.data.message)
+      switch (error.response?.data.message) {
+        case ERROR_RESPONSES.reissueFailed: {
+          localStorage.removeItem(STORAGE_KEYS.accessToken);
+          localStorage.removeItem(STORAGE_KEYS.refreshToken);
+          window.location.href = '/';
+          break;
+        }
+        default:
+          break;
+      }
+    }
+    return Promise.reject(error);
+  },
+);
+
 authInstance.interceptors.response.use(
   (response) => {
     return response;
   },
   async (error) => {
     const { config } = error;
-    // if (error.response.status === 401) {
-    //   window.location.href = '/';
-    // }
 
     if (isAxiosError(error)) {
-      switch (error.response?.data.error) {
+      console.log('error.response?.data',error.response?.data.message)
+      switch (error.response?.data.message) {
         case ERROR_RESPONSES.accessExpired: {
           const res = await authAPI.getReissue();
           localStorage.setItem(STORAGE_KEYS.accessToken, res.accessToken);
@@ -47,10 +68,11 @@ authInstance.interceptors.response.use(
             ...config,
             headers: {
               ...config.headers,
-              accessToken: localStorage.getItem(STORAGE_KEYS.accessToken),
+              Authorization: `Bearer ${localStorage.getItem(STORAGE_KEYS.accessToken)}`,
             },
           });
         }
+        //error : reissue는 isAxiosError에 검증이 안된다?!  왜지? 
         case ERROR_RESPONSES.reissueFailed: {
           localStorage.removeItem(STORAGE_KEYS.accessToken);
           localStorage.removeItem(STORAGE_KEYS.refreshToken);

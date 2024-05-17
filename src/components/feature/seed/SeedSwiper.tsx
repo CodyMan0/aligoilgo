@@ -14,7 +14,7 @@ const settings = {
 
 export const SeedSwiper = ({ children }: PropsWithChildren) => {
   return (
-    <Swiper {...settings} className="w-full ">
+    <Swiper {...settings} className="w-full" autoHeight>
       {children}
     </Swiper>
   );

@@ -8,10 +8,9 @@ type OpacityBoxProps = {
 };
 
 const ObserverExitEvent = ({ children }: OpacityBoxProps) => {
-  // const { isOpen } = useTimerCotnext();
-  const { isOpen } = useRoutineContext();
+  const { isRainOpen } = useRoutineContext();
 
-  return <AnimatePresence>{isOpen && <>{children}</>}</AnimatePresence>;
+  return <AnimatePresence>{isRainOpen && <>{children}</>}</AnimatePresence>;
 };
 
 export default ObserverExitEvent;
