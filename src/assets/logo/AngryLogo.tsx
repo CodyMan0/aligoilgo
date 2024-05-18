@@ -15,14 +15,14 @@ const AngryLogo = ({ width = 198, height = 184 }: SVGProps<SVGSVGElement>) => (
     <path
       d="M91 51C94.8898 55.0946 101.2 56.9941 106.263 59.1638"
       stroke="#151719"
-      stroke-width="3"
-      stroke-linecap="round"
+      strokeWidth="3"
+      strokeLinecap="round"
     />
     <path
       d="M142 57.744C145.609 56.4552 149.527 54.7004 152.747 52.617C153.594 52.0692 154.551 51.3123 155.488 51"
       stroke="#151719"
-      stroke-width="3"
-      stroke-linecap="round"
+      strokeWidth="3"
+      strokeLinecap="round"
     />
     <defs>
       <pattern id="pattern0_683_372" patternContentUnits="objectBoundingBox" width="1" height="1">

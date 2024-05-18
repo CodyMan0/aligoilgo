@@ -61,7 +61,7 @@ const UserDetatilPage = () => {
               // 선 씨앗 체크 API
               mutate(Number(id));
               setIsDeleted(true);
-              navigate('/target');
+              navigate('/seed');
             }}
           >
             확인

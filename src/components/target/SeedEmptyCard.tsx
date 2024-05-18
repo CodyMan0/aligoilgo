@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import LogoSVG from '@/assets/logo/Logo';
+import { ROUTER_PATHS } from '@/constants/routerPath';
 import { Typography } from '../common/typography/Typography';
 
 const SeedEmptyCard = ({ isActive }: { isActive: boolean }) => {
@@ -11,7 +12,7 @@ const SeedEmptyCard = ({ isActive }: { isActive: boolean }) => {
       {isActive ? (
         <li
           className="flex flex-col size-full rounded-xl border border-gray-100 p-3 cursor-pointer bg-gray-10"
-          onClick={() => navigate(`/target/create`)}
+          onClick={() => navigate(ROUTER_PATHS.CREATE_TARGET)}
         >
           <div className="flex w-full h-full py-2">
             <div className="flex flex-col justify-center items-center w-[50%]">

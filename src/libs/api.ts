@@ -20,12 +20,35 @@ export const authInstance = axios.create({
   timeout: 30000,
 });
 
+
+// ReIssue API에 대한 에러 처리
 authInstance.interceptors.request.use((config) => {
   const token = localStorage.getItem(STORAGE_KEYS.accessToken);
   config.headers.Authorization = `Bearer ${token}`
 
   return config;
 });
+
+baseInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    if (isAxiosError(error)) {
+      switch (error.response?.data.message) {
+        case ERROR_RESPONSES.reissueFailed: {
+          localStorage.removeItem(STORAGE_KEYS.accessToken);
+          localStorage.removeItem(STORAGE_KEYS.refreshToken);
+          window.location.href = '/';
+          break;
+        }
+        default:
+          break;
+      }
+    }
+    return Promise.reject(error);
+  },
+);
 
 authInstance.interceptors.response.use(
   (response) => {
@@ -35,7 +58,7 @@ authInstance.interceptors.response.use(
     const { config } = error;
 
     if (isAxiosError(error)) {
-      switch (error.response?.data.error) {
+      switch (error.response?.data.message) {
         case ERROR_RESPONSES.accessExpired: {
           const res = await authAPI.getReissue();
           localStorage.setItem(STORAGE_KEYS.accessToken, res.accessToken);
@@ -48,13 +71,7 @@ authInstance.interceptors.response.use(
             },
           });
         }
-        //error : reissue는 isAxiosError에 검증이 안된다?!  왜지? 
-        case ERROR_RESPONSES.reissueFailed: {
-          localStorage.removeItem(STORAGE_KEYS.accessToken);
-          localStorage.removeItem(STORAGE_KEYS.refreshToken);
-          window.location.href = '/';
-          break;
-        }
+       
         default:
           break;
       }
