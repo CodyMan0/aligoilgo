@@ -6,6 +6,7 @@ export const API_PATHS = {
 
   All_TARGET: '/api/seed',
   SEED_DETAIL: (seedId: number) => `/api/seed/${seedId}`,
+  SEED_DETAIL_NO_CREDENTIAL: (seedId: number) => `/api/seed/share/${seedId}`,
   SEED_DETAIL_ROUTINE_DONE: (routineId: number) => `/api/seed/routine/end/${routineId}`,
   SEED_DETAIL_ROUTINE_TITLE: (routineId: number) => `/api/seed/routine/${routineId}`,
   SEED_DELETE: (seedId: number) => `/api/seed/${seedId}`,
@@ -17,13 +18,9 @@ export const API_PATHS = {
 
 export const ROUTER_PATHS = {
   ROOT: '/',
-  TEST_CONSTANT: '/test/const',
-  MODAL_TEST: '/modal-test',
-  SIGNIN: '/signin',
-  SIGNUP: '/signup',
   SIGNIN_REDIRECT_KAKAO: '/kakao',
-  TAGET_DETAIL: `/target/:id`,
-  TARGET: '/target',
-  CREATE_TARGET: '/target/create',
+  TAGET_DETAIL: `/seed/:id`,
+  TARGET: '/seed',
+  CREATE_TARGET: '/seed/create',
   MYPAGE: '/mypage',
 } as const;

@@ -1,27 +1,37 @@
-import { Suspense } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { PreviewSeedType } from '@/types/target/type';
-import { checkActiveDuration } from '@/utils/date';
-import { Spinner } from '../common/spinner/Spinner';
-import SeedCard from './\bseedCard';
-import TargetEmptyCard from './TargetEmptyCard';
+import SeedCard from '../feature/seed/SeedCard';
+import SeedEmptyCard from './SeedEmptyCard';
 
-// TODO : isEndDUration은 확장성을 고려하여 boolean보다 Constant Literal이 좋을 듯
-const SeedList = ({ isActive, seeds }: { isActive: boolean; seeds: PreviewSeedType[] }) => {
+const SeedList = ({ seeds, isActive }: { seeds: PreviewSeedType[]; isActive: boolean }) => {
+  const navigate = useNavigate();
   return (
-    <ul className="flex flex-col gap-6 h-fit">
-      <Suspense fallback={<Spinner />}>
-        {seeds?.length === 0 ? (
-          <TargetEmptyCard />
-        ) : (
-          <>
-            {seeds.map((seed) => {
-              const isState = checkActiveDuration(seed.endDate);
-              return isState === isActive ? <SeedCard key={seed.id} {...seed} /> : null;
-            })}
-          </>
-        )}
-      </Suspense>
+    <ul className="flex flex-col gap-6">
+      {seeds?.length === 0 ? (
+        <SeedEmptyCard isActive={isActive} />
+      ) : (
+        <>
+          {seeds.map((seed) => {
+            return (
+              <SeedCard
+                mode={isActive ? 'active' : 'inactive'}
+                key={seed.id}
+                onClick={() => navigate(`/seed/${seed.id}`)}
+              >
+                <SeedCard.Header endDate={seed.endDate} />
+                <SeedCard.Background />
+                <SeedCard.Body
+                  seedName={seed.seedName}
+                  routineInfos={seed.routineInfos}
+                  seedState={seed.seedState}
+                />
+                <SeedCard.Footer likes={seed.cheeringCount} />
+              </SeedCard>
+            );
+          })}
+        </>
+      )}
     </ul>
   );
 };

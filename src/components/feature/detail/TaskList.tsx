@@ -6,10 +6,9 @@ import Task from './Task';
 
 type TaskListProps = {
   tasks: RoutineDetailType[];
-  isShared: boolean;
 };
 
-const TaskList = ({ tasks, isShared }: TaskListProps) => {
+const TaskList = ({ tasks }: TaskListProps) => {
   const { id } = useParams();
   const { checkRotine } = useRoutineMutation(Number(id));
 
@@ -17,12 +16,7 @@ const TaskList = ({ tasks, isShared }: TaskListProps) => {
     <div className={`flex-1 w-full flex flex-col gap-4 `}>
       {tasks.map((routine, index) => {
         return (
-          <Task
-            key={index}
-            {...routine}
-            isShared={isShared}
-            onFinishRoutine={() => checkRotine(routine.routineId)}
-          />
+          <Task key={index} {...routine} onFinishRoutine={() => checkRotine(routine.routineId)} />
         );
       })}
     </div>

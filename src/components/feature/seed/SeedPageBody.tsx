@@ -18,9 +18,8 @@ const SEED_PAGE_VALUES = [
 ];
 
 const SeedPageBody = () => {
-  const { seeds, fetchNextPage } = useFilteringSeed();
+  const { activeSeeds, inactiveSeeds, fetchNextPage } = useFilteringSeed();
   const { controls } = useAnimationWithTimeout();
-
   const lastTargetElementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -55,7 +54,7 @@ const SeedPageBody = () => {
                   />
                 </AnimatePresence>
               </div>
-              <SeedList isActive={isActive} seeds={seeds} />
+              <SeedList seeds={isActive ? activeSeeds : inactiveSeeds} isActive={isActive} />
             </SwiperSlide>
           );
         })}

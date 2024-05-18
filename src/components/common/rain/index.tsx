@@ -1,4 +1,4 @@
-import Droplet from '@/assets/icon/Droplet';
+import RainDrop from '@/assets/icon/RainDrop';
 
 type RainProps = {
   position: { x: string; y: string };
@@ -8,7 +8,7 @@ type RainProps = {
 const Rain = ({ position, size }: RainProps) => {
   return (
     <span className={`absolute ${position.x} ${position.y}`}>
-      <Droplet width={size} />
+      <RainDrop width={size} />
     </span>
   );
 };

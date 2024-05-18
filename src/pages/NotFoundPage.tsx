@@ -1,36 +1,46 @@
-import { Link, isRouteErrorResponse, useRouteError } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import IMAGE_MAP from '@/constants/image';
-import logo from '../assets/logo/hero.jpeg';
+import QuestionError from '@/assets/icon/QuestionError';
+import AngryLogo from '@/assets/logo/\bAngryLogo';
+import Button from '@/components/common/button/Button';
+import { Typography } from '@/components/common/typography/Typography';
+import { ROUTER_PATHS } from '@/constants/routerPath';
 
 const NotFoundPage = () => {
-  const error = useRouteError();
-
-  if (isRouteErrorResponse(error)) {
-    return (
-      <section className="flex flex-col items-center justify-center h-screen px-6 py-10 overflow-hidden">
-        <div className="flex flex-col items-center justify-center">
-          <div className="flex gap-4">
-            <img src={IMAGE_MAP.shockedOliIcon} alt="error-oli-image" />
-            <img src={IMAGE_MAP.shockedOliIcon} alt="error-oli-image" />
-            <img src={IMAGE_MAP.shockedOliIcon} alt="error-oli-image" />
+  const navigate = useNavigate();
+  return (
+    <main className="relative w-full h-dvh flex justify-center items-start">
+      <div className="w-full h-full flex flex-col items-center justify-center">
+        <div className="w-full h-[50%] flex flex-col justify-center items-center">
+          <div className="relative w-full flex justify-center gap-6">
+            <AngryLogo width={50} />
+            <AngryLogo width={50} />
+            <AngryLogo width={50} />
+            <div className="absolute left-5">
+              <QuestionError width={100} />
+            </div>
+            <div className="absolute right-5">
+              <QuestionError width={100} />
+            </div>
           </div>
-          <h1 className="text-3xl desktop:text-4xl font-bold mt-4 mb-4">{error.status}</h1>
-          <h2 className="text-2xl desktop:text-2xl font-bold mt-4 mb-4">{error.statusText}</h2>
-
-          <h2 className="text-xl desktop:text-xl font-bold mt-4 mb-4 cursor-pointer hover:text-mainHover">
-            <Link to="/">랜딩 페이지로 이동하기</Link>
-          </h2>
         </div>
-      </section>
-    );
-  } else {
-    <section className="flex flex-col items-center justify-center h-screen px-6 py-10 overflow-hidden">
-      <div className="flex flex-col items-center justify-center">
-        <img src={logo} alt="사진" className="w-3/5" />
+        <h2 className="flex flex-col items-center flex-1 text-gray-10 font-jalnan gap-4">
+          <Typography type="body1">존재하지 않는 페이지예요!</Typography>
+          <Typography>URL에 문제가 있어요</Typography>
+        </h2>
       </div>
-    </section>;
-  }
+
+      <div className="absolute bottom-5 text-xl w-[90%] bg-gray-100 rounded-xl">
+        <Button
+          className="w-full h-16 duration-300"
+          variant="secondary"
+          onClick={() => navigate(ROUTER_PATHS.ROOT)}
+        >
+          홈으로
+        </Button>
+      </div>
+    </main>
+  );
 };
 
 export default NotFoundPage;

@@ -27,8 +27,8 @@ const DatePickerComponent = () => {
         getKrDateName(date) === '토요일'
           ? 'saturday'
           : getKrDateName(date) === '일요일'
-          ? 'sunday'
-          : null
+            ? 'sunday'
+            : null
       }
     />
   );

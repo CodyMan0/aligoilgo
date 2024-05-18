@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const Droplet = ({ width, height }: React.SVGProps<SVGSVGElement>) => {
+const AnimatedDroplet = ({ width, height }: React.SVGProps<SVGSVGElement>) => {
   return (
     <motion.svg
       width={width}
@@ -9,6 +9,16 @@ const Droplet = ({ width, height }: React.SVGProps<SVGSVGElement>) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
+      transition={{
+        duration: 1.2,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      }}
+      animate={{
+        x: 0,
+        y: 100,
+        height: '100%',
+      }}
     >
       <rect x="0.5" width="295" height="473" fill="url(#pattern0_581_749)" />
       <defs>
@@ -25,4 +35,4 @@ const Droplet = ({ width, height }: React.SVGProps<SVGSVGElement>) => {
     </motion.svg>
   );
 };
-export default Droplet;
+export default AnimatedDroplet;

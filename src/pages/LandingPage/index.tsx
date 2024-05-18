@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import targetOptions from '@/api/target/queryOptions';
+import seedOptions from '@/api/seed/queryOptions';
 import Logo from '@/assets/logo/Logo';
 import ReversedLogo from '@/assets/logo/ReversedLogo';
 import KakaoLoginButton from '@/components/auth/KakaoLoginButton';
@@ -9,7 +9,7 @@ import SkeletonElement from '@/components/layout/Skeleton';
 import { ROUTER_PATHS } from '@/constants/routerPath';
 
 const LandingPage = () => {
-  const { data: seed, isLoading } = useQuery(targetOptions.totalInfo());
+  const { data: seed, isLoading } = useQuery(seedOptions.totalInfo());
 
   const APP_KEY = import.meta.env.VITE_KAKAO_CLIENT_ID;
   const REDIRECT_URI = `${window.location.origin}${ROUTER_PATHS.SIGNIN_REDIRECT_KAKAO}`;
@@ -20,16 +20,13 @@ const LandingPage = () => {
     <div className="relative w-full h-dvh flex flex-col items-center justify-start p-6">
       <div className="flex flex-col w-full items-center h-[80%]">
         <div className="w-full flex flex-col h-[80%] pt-12">
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-1">
             <Typography type="title1" className="text-white font-jalnan">
               씨앗 모아
             </Typography>
             <div className="flex flex-col items-center">
-              <Typography type="heading3" className="text-white">
-                목표 달성을 위한
-              </Typography>
-              <Typography type="heading3" className="text-white ">
-                나만의 습관 형성 서비스
+              <Typography type="heading4" className="text-white text-center">
+                {`심는대로 거두는 \n 놀라운 경험을`}
               </Typography>
             </div>
           </div>
@@ -45,15 +42,20 @@ const LandingPage = () => {
             <SkeletonElement type="landing" />
           </div>
         ) : (
-          <div className="flex flex-col justify-center items-center pointer-events-none text-white pt-12">
-            <Typography type="heading2">전체 {seed?.totalUserCount} 명의 유저가</Typography>
-            <Typography type="heading2">총 {seed?.totalSeedCount}개의 씨앗을 심었어요!</Typography>
+          <div className="flex flex-col justify-center items-center pointer-events-none text-white pt-12 ">
+            <Typography type="heading3">
+              {seed?.totalUserCount}명의 사용자가 총 {seed?.totalSeedCount}개의 씨앗을 심었어요
+            </Typography>
+            <Typography type="heading3">동참해보세요</Typography>
           </div>
         )}
       </div>
 
       <div className="absolute bottom-5 w-full px-6">
         <KakaoLoginButton href={KAKAO_AUTH_URI} />
+        <Typography type="section1" className="text-gray-100 pt-2 text-center">
+          {`회원가입 시 서비스 이용약관과 개인정보 \n 수집 및 이용에 동의하게 됩니다.`}
+        </Typography>
       </div>
     </div>
   );

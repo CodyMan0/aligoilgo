@@ -1,7 +1,7 @@
 import { isAxiosError } from 'axios';
 import { type FallbackProps } from 'react-error-boundary';
 
-import Logo from '@/assets/logo/Logo';
+import AngryLogo from '@/assets/logo/\bAngryLogo';
 import Button from '@/components/common/button/Button';
 import { Typography } from '@/components/common/typography/Typography';
 import ERROR_RESPONSES from '@/constants/errorMessages';
@@ -21,9 +21,9 @@ const RootApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
       <div className="w-full h-full flex flex-col items-center justify-center">
         <div className=" h-[50%] flex flex-col justify-center items-center">
           <div className="flex gap-6">
-            <Logo width={50} />
-            <Logo width={50} />
-            <Logo width={50} />
+            <AngryLogo width={50} />
+            <AngryLogo width={50} />
+            <AngryLogo width={50} />
           </div>
         </div>
         <h2 className="flex-1 text-gray-10 font-jalnan">

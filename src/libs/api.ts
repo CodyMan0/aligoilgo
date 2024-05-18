@@ -27,29 +27,6 @@ authInstance.interceptors.request.use((config) => {
   return config;
 });
 
-// ReIssue API에 대한 에러 처리
-baseInstance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  async (error) => {
-    if (isAxiosError(error)) {
-      console.log('error.response?.data',error.response?.data.message)
-      switch (error.response?.data.message) {
-        case ERROR_RESPONSES.reissueFailed: {
-          localStorage.removeItem(STORAGE_KEYS.accessToken);
-          localStorage.removeItem(STORAGE_KEYS.refreshToken);
-          window.location.href = '/';
-          break;
-        }
-        default:
-          break;
-      }
-    }
-    return Promise.reject(error);
-  },
-);
-
 authInstance.interceptors.response.use(
   (response) => {
     return response;
@@ -58,8 +35,7 @@ authInstance.interceptors.response.use(
     const { config } = error;
 
     if (isAxiosError(error)) {
-      console.log('error.response?.data',error.response?.data.message)
-      switch (error.response?.data.message) {
+      switch (error.response?.data.error) {
         case ERROR_RESPONSES.accessExpired: {
           const res = await authAPI.getReissue();
           localStorage.setItem(STORAGE_KEYS.accessToken, res.accessToken);
