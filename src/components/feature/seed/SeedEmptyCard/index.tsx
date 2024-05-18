@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import LogoSVG from '@/assets/logo/Logo';
 import { ROUTER_PATHS } from '@/constants/routerPath';
-import { Typography } from '../common/typography/Typography';
+import { Typography } from '../../../common/typography/Typography';
 
 const SeedEmptyCard = ({ isActive }: { isActive: boolean }) => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const SeedEmptyCard = ({ isActive }: { isActive: boolean }) => {
     <>
       {isActive ? (
         <li
-          className="flex flex-col size-full rounded-xl border border-gray-100 p-3 cursor-pointer bg-gray-10"
+          className="flex flex-col size-full rounded-xl border border-gray-100 p-3 cursor-pointer bg-gray-10  h-48"
           onClick={() => navigate(ROUTER_PATHS.CREATE_TARGET)}
         >
           <div className="flex w-full h-full py-2">
@@ -19,7 +19,7 @@ const SeedEmptyCard = ({ isActive }: { isActive: boolean }) => {
               <LogoSVG width={80} height={80} className="ml-1" />
             </div>
             <div className="flex-1 flex flex-col items-center justify-evenly ">
-              <Typography type="heading2" className="font-jalnan">
+              <Typography type="heading2" className="font-jalnan text-primary-400">
                 씨앗 생성하기
               </Typography>
             </div>

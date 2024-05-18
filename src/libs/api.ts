@@ -71,7 +71,10 @@ authInstance.interceptors.response.use(
             },
           });
         }
-       
+        case ERROR_RESPONSES.authenticationEntryPoint: {
+          window.location.href = '/';
+          break
+        }
         default:
           break;
       }

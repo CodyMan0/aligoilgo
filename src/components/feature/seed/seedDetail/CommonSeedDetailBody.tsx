@@ -1,15 +1,16 @@
-import SunIcon from '@/assets/icon/SunIcon';
-import Button from '@/components/common/button/Button';
 import { Tag } from '@/components/common/tag';
 import { ToolTip } from '@/components/common/toolTip';
 import { Typography } from '@/components/common/typography/Typography';
-import useToast from '@/hooks/useToast';
+import useBottomSheetState from '@/hooks/useBottomSheetState';
 import { DetailSeedType } from '@/types/target/type';
 import { getDateFromDiff } from '@/utils/date';
 import ObserverExitEvent from '../../detail/animatedBox/OpacityBox';
+import CheerUpBottomSheet from '../../detail/comment/CheerUpBottomSheet';
+import { CheerUpButton } from '../../detail/comment/CheerUpButton';
 import TaskList from '../../detail/TaskList';
 import { detailSeedStateObj } from '../SeedCard';
 import { Sticker } from './Sticker';
+import { BottomSheetType } from './UserDetatilPage';
 
 type CommonSeedDetailBodyType = {
   seed: DetailSeedType;
@@ -17,7 +18,7 @@ type CommonSeedDetailBodyType = {
 
 /** 유저와 게스트 공통으로 사용하는 컴포넌트 */
 const CommonSeedDetailBody = ({ seed }: CommonSeedDetailBodyType) => {
-  const toast = useToast();
+  const { onOpenSheet, openedSheet, onCloseSheet } = useBottomSheetState<BottomSheetType>();
   const totalRoutineCount =
     getDateFromDiff(seed.endDate, seed.startDate) * seed.routineDetails.length;
 
@@ -41,22 +42,21 @@ const CommonSeedDetailBody = ({ seed }: CommonSeedDetailBodyType) => {
 
           <div className="flex w-full justify-end">
             <Sticker>
-              <Button
-                className="bg-gray-10"
-                onClick={() => {
-                  toast({
-                    type: 'default',
-                    message: '응원해준 친구을 볼 수 있는 기능 준비중입니다!',
-                  });
+              <CheerUpButton
+                onOpen={() => {
+                  onOpenSheet('checkCheerUpNameList');
                 }}
-              >
-                <SunIcon width={30} height={30} />
-              </Button>
+              />
             </Sticker>
           </div>
         </div>
         {/* //TODO : 좋아요 UI 표현 고민해보자 */}
         <TaskList tasks={seed.routineDetails} />
+
+        <CheerUpBottomSheet
+          isOpen={openedSheet === 'checkCheerUpNameList'}
+          onClose={onCloseSheet}
+        />
       </div>
     </>
   );

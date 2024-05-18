@@ -41,7 +41,7 @@ export const Active: Story = {
       <SeedCard mode="active">
         <SeedCard.Header endDate="2024-05-20" />
         <SeedCard.Body
-          seed={mockInActiveSeed.seed}
+          seedName={mockInActiveSeed.seed}
           routineInfos={mockInActiveSeed.routineInfos}
           seedState={mockInActiveSeed.seedState}
         />
@@ -58,7 +58,7 @@ export const InActive: Story = {
         <SeedCard.Header endDate="2024-05-15" />
         <SeedCard.Background />
         <SeedCard.Body
-          seed={mockInActiveSeed.seed}
+          seedName={mockInActiveSeed.seed}
           routineInfos={mockInActiveSeed.routineInfos}
           seedState={mockInActiveSeed.seedState}
         />

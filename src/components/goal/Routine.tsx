@@ -48,7 +48,6 @@ const Routine = ({ toNext }: RoutineProps) => {
           </button>
         )}
       </div>
-
       {routines.map((routine, index) => (
         <div className="flex items-center justify-center mt-5" key={routine.id}>
           <input

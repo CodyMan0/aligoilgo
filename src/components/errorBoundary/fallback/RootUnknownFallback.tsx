@@ -13,8 +13,8 @@ const RootUnknownFallback = ({ error }: FallbackProps) => {
 
   const shouldSkip =
     isAxiosError(error) &&
-    (error.response?.data.error === ERROR_RESPONSES.reissueFailed ||
-      error.response?.data.error === ERROR_RESPONSES.authenticationEntryPoint);
+    (error.response?.data.message === ERROR_RESPONSES.reissueFailed ||
+      error.response?.data.message === ERROR_RESPONSES.authenticationEntryPoint);
 
   if (shouldSkip) {
     return <Navigate to={ROUTER_PATHS.ROOT} />;

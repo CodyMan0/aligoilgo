@@ -9,9 +9,9 @@ import ERROR_RESPONSES from '@/constants/errorMessages';
 const RootApiFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   const shouldSkip =
     !isAxiosError(error) ||
-    error.response?.data.error === ERROR_RESPONSES.accessExpired ||
-    error.response?.data.error === ERROR_RESPONSES.reissueFailed ||
-    error.response?.data.error === ERROR_RESPONSES.authenticationEntryPoint;
+    error.response?.data.message === ERROR_RESPONSES.accessExpired ||
+    error.response?.data.message === ERROR_RESPONSES.reissueFailed ||
+    error.response?.data.message === ERROR_RESPONSES.authenticationEntryPoint;
 
   if (shouldSkip) {
     throw error;

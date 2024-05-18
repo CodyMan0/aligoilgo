@@ -16,7 +16,7 @@ import ConfirmBottomSheet from '../../detail/ConfirmBottomSheet';
 import RainBackGround from '../../detail/RainBackGround';
 import CommonSeedDetailBody from './CommonSeedDetailBody';
 
-type BottomSheetType = 'askDelete';
+export type BottomSheetType = 'askDelete' | 'checkCheerUpNameList';
 
 const UserDetatilPage = () => {
   const { id } = useParams();
