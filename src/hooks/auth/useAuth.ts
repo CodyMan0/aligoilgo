@@ -36,9 +36,7 @@ const useAuth = () => {
         }
 
         if (prevPath?.startsWith('/') && prevPath !== '/') {
-          console.log('실행')
           navigate(prevPath);
-          sessionStorage.removeItem('savedPathBeforeLogin');
           return 
         }
 
