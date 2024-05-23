@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import QuestionError from '@/assets/icon/QuestionError';
-import AngryLogo from '@/assets/logo/\bAngryLogo';
+import AngryLogo from '@/assets/logo/AngryLogo';
 import Button from '@/components/common/button/Button';
 import { Typography } from '@/components/common/typography/Typography';
 import { ROUTER_PATHS } from '@/constants/routerPath';

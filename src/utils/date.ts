@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 
-import { MAX_DATE, MIN_DATE } from '@/constants/seed';
+
+import { MAX_DATE, MIN_DATE } from '@/constants/contants';
 import { gaurdNagativeToZero } from './math';
 
 const currentDate = new Date();
@@ -12,5 +13,11 @@ export const checkActiveDuration = (endDate: string): boolean => dayjs(endDate).
 export const getKrDateName = (date: Date) => dayjs(date).format('dddd');
 
 export const getDateFromDiff = (endDate: string, startDate: string) => {
-  return gaurdNagativeToZero(dayjs(endDate).diff(startDate, 'day') - 1);
+  return gaurdNagativeToZero(dayjs(endDate).diff(startDate,'day') + 1);
 };
+
+export const getFutureDate = (day: number) => {
+  const futureDate = dayjs().add(day, 'day')
+  return futureDate.format('YYYY-MM-DD')
+
+}

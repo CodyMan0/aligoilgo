@@ -2,11 +2,18 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import timezone from 'dayjs/plugin/timezone';
 import updateLocale from 'dayjs/plugin/updateLocale';
+import utc from 'dayjs/plugin/utc';
+
+
 
 dayjs.extend(relativeTime);
 dayjs.extend(updateLocale);
+dayjs.extend(utc)
+dayjs.extend(timezone)
 dayjs.locale('ko');
+dayjs.tz.setDefault('Asia/Seoul');
 dayjs.updateLocale('ko', {
   relativeTime: {
     future: '%s 남음',

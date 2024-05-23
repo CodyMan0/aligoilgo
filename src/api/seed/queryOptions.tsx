@@ -36,6 +36,14 @@ const seedOptions = {
       queryFn: () => seedAPI.getDetailSeedAsGuest(seedId),
     });
   },
+
+  /** 응원한 유저 정보 조회 */
+  getCheeringUserList: (seedId: number) => {
+    return queryOptions({
+      queryKey: [...seedOptions.all, seedId, 'cheer'] as const,
+      queryFn: () => seedAPI.getSeedLikesUserList(seedId),
+    });
+  },
 };
 
 export default seedOptions;

@@ -17,3 +17,7 @@ export const seedSchema = yup.object({
 
 
 export const FUNNEL_LIST = ['seed','routines','duration'] as const
+
+
+export const MIN_DATE = 2;
+export const MAX_DATE = 31;

@@ -1,16 +1,15 @@
 import { useRef } from 'react';
 
 import useUpdateEffect from '@/hooks/useUpdateEffect';
-import useMusicStore from '@/store/useMusicStore';
 
 interface AudioProps {
   /** 재생할 음악의 URL입니다. */
   src: string;
+  isPlaying: boolean;
 }
 
-const Audio = ({ src }: AudioProps) => {
+const Audio = ({ src, isPlaying }: AudioProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const isPlaying = useMusicStore((s) => s.isPlaying);
   /** isPlaying 변경시 음악 On/Off 처리 */
   useUpdateEffect(() => {
     if (!audioRef.current) {

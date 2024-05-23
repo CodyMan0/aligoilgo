@@ -13,8 +13,10 @@ export type UserInfoType = {
 };
 
 export type AuthResponse = {
-	accessToken: string;
-	refreshToken: string;
-	accessTokenValidTime: number
+	tokenInfo : {
+		accessToken: string;
+		refreshToken: string;
+	}
+	isFirst: boolean
 };
 

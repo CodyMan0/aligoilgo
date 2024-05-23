@@ -21,34 +21,15 @@ export const authInstance = axios.create({
 });
 
 
-// ReIssue API에 대한 에러 처리
 authInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem(STORAGE_KEYS.accessToken);
-  config.headers.Authorization = `Bearer ${token}`
+  const accessToken = localStorage.getItem(STORAGE_KEYS.accessToken);
+  const result = accessToken ? `Bearer ${accessToken}` : null;
+  config.headers.Authorization = result
 
   return config;
 });
 
-baseInstance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  async (error) => {
-    if (isAxiosError(error)) {
-      switch (error.response?.data.message) {
-        case ERROR_RESPONSES.reissueFailed: {
-          localStorage.removeItem(STORAGE_KEYS.accessToken);
-          localStorage.removeItem(STORAGE_KEYS.refreshToken);
-          window.location.href = '/';
-          break;
-        }
-        default:
-          break;
-      }
-    }
-    return Promise.reject(error);
-  },
-);
+
 
 authInstance.interceptors.response.use(
   (response) => {
@@ -71,10 +52,14 @@ authInstance.interceptors.response.use(
             },
           });
         }
-        case ERROR_RESPONSES.authenticationEntryPoint: {
+        case ERROR_RESPONSES.reissueFailed: {
+          localStorage.removeItem(STORAGE_KEYS.accessToken);
+          localStorage.removeItem(STORAGE_KEYS.refreshToken);
           window.location.href = '/';
-          break
+          break;
         }
+
+     
         default:
           break;
       }

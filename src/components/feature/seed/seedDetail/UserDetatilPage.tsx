@@ -8,12 +8,13 @@ import TrashIcon from '@/assets/icon/TrashIcon';
 import Button from '@/components/common/button/Button';
 import Header from '@/components/common/header/Header';
 import { Typography } from '@/components/common/typography/Typography';
+import { useRoutineContext } from '@/context/RoutineContext';
 import useBottomSheetState from '@/hooks/useBottomSheetState';
 import useDeleteSeedMutation from '@/hooks/useDeleteSeedMutation';
 import useToast from '@/hooks/useToast';
 import { shareLink } from '@/utils/share';
+import RainBackground from '../../detail/background/RainBackGround';
 import ConfirmBottomSheet from '../../detail/ConfirmBottomSheet';
-import RainBackGround from '../../detail/RainBackGround';
 import CommonSeedDetailBody from './CommonSeedDetailBody';
 
 export type BottomSheetType = 'askDelete' | 'checkCheerUpNameList';
@@ -21,6 +22,7 @@ export type BottomSheetType = 'askDelete' | 'checkCheerUpNameList';
 const UserDetatilPage = () => {
   const { id } = useParams();
   const { onOpenSheet, openedSheet, onCloseSheet } = useBottomSheetState<BottomSheetType>();
+  const { isRainOpen } = useRoutineContext();
 
   const navigate = useNavigate();
   const { mutate } = useDeleteSeedMutation();
@@ -87,7 +89,7 @@ const UserDetatilPage = () => {
           </div>
         </div>
       </div>
-      <RainBackGround />
+      <RainBackground isOpen={isRainOpen} />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useBeforeUnload, useParams } from 'react-router-dom';
 
 import CheckedIcon from '@/assets/icon/CheckedIcon';
 import EllipsisVerticalIcon from '@/assets/icon/EllipsisVerticalIcon';
@@ -8,25 +8,37 @@ import UnCheckedIcon from '@/assets/icon/UnCheckedIcon';
 import Logo from '@/assets/logo/Logo';
 import { Typography } from '@/components/common/typography/Typography';
 import { DELAY_SECOND } from '@/constants/contants';
-import { useRoutineContext } from '@/context/RoutineContext';
-import { useSharedStateContext } from '@/context/SharedStateContext';
+import useRoutineTitleMutation from '@/hooks/seed/routine/useRoutineTitleMutation';
 import { useInput } from '@/hooks/useInput';
-import useRoutineTitleMutation from '@/hooks/useRoutineTitleMutation';
+import useQueryString from '@/hooks/useQueryString';
 import useMusicStore from '@/store/useMusicStore';
+import SharedTask from './SharedTask';
 import { TaskEditInput } from './TaskEditInput';
-interface TaskProps {
-  initialIsDone?: boolean;
+
+export type TaskProps = {
   routineTitle: string;
   routineId: number;
   completedRoutineToday: boolean;
-  onFinishRoutine: VoidFunction;
-}
+  onDone: VoidFunction;
+  onRainBgClose: VoidFunction;
+  onRainBgOpen: VoidFunction;
+  //TODO : 다른 페이지에서 사용할때 수정이 불가해야하는 요구사항때문에 임시 추가 해당 컴포넌트는 반드시 리팩터링 필요
+  disableEditing?: boolean;
+};
 
-const Task = ({ routineTitle, routineId, completedRoutineToday, onFinishRoutine }: TaskProps) => {
-  const toggleMusicPlaying = useMusicStore((s) => s.togglePlaying);
-  const isPlaying = useMusicStore((s) => s.isPlaying);
-  const { onRainBgOpen, onRainBgClose } = useRoutineContext();
-  const { isShared } = useSharedStateContext();
+const Task = ({
+  routineTitle,
+  routineId,
+  completedRoutineToday,
+  onDone,
+  onRainBgOpen,
+  onRainBgClose,
+  disableEditing,
+}: TaskProps) => {
+  const toggleMusicPlaying = useMusicStore((s) => s.toggleRainPlaying);
+  const isPlaying = useMusicStore((s) => s.isRainPlaying);
+
+  const { isShared } = useQueryString('share');
 
   const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false);
@@ -36,25 +48,29 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onFinishRoutine 
   const CheckIcon = completedRoutineToday ? CheckedIcon : UnCheckedIcon;
   const isEditedInputValue = routineTitle !== editText;
 
+  useBeforeUnload(() => {
+    if (!isPlaying) return;
+    toggleMusicPlaying();
+    onRainBgClose();
+  });
+
   const routineClickEventHandler = () => {
     if (completedRoutineToday) return;
     if (isPlaying) return;
     toggleMusicPlaying();
     onRainBgOpen();
+    // 지정된 시간 이전에 다른 페이지로 가면 왜 아래 코드는 실행이 안될까?!
     setTimeout(() => {
       toggleMusicPlaying();
       onRainBgClose();
     }, DELAY_SECOND);
-    onFinishRoutine();
+    onDone();
   };
 
   return (
     <>
-      {/* TODO : 합성 컴포넌트로 만들면 좋을 듯, 지금은 우선 Props로 최상위는 공유 됐는지 안됐는지 그리고 그 안에서 수정이 눌렸는지를 구분하고 있음 */}
       {isShared ? (
-        <div className="w-full flex gap-1 items-start px-4 py-3 rounded-[8px] border-gray-20 bg-white shadow-thumb">
-          <Typography type="body2">{routineTitle}</Typography>
-        </div>
+        <SharedTask routineTitle={routineTitle} />
       ) : (
         <div className="w-full flex gap-1 items-start px-4 py-3 rounded-[8px] border-gray-20 bg-white shadow-thumb">
           {isEditing ? (
@@ -98,7 +114,7 @@ const Task = ({ routineTitle, routineId, completedRoutineToday, onFinishRoutine 
                         }
                       }, 0);
                     }}
-                    disabled={isShared}
+                    disabled={disableEditing}
                   >
                     <EllipsisVerticalIcon width={20} />
                   </button>

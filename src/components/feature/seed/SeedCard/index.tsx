@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { createContext, HTMLAttributes, useContext } from 'react';
 
 import CloseIcon from '@/assets/icon/CloseIcon';
@@ -53,7 +52,7 @@ const Header = ({
 
       {mode === 'active' && (
         <Typography type="section1" className="text-gray-500">
-          {fromNowOf(dayjs(endDate))}
+          {fromNowOf(endDate)}
         </Typography>
       )}
     </div>

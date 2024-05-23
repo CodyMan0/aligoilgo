@@ -1,7 +1,7 @@
 import { isAxiosError } from 'axios';
 import { type FallbackProps } from 'react-error-boundary';
 
-import AngryLogo from '@/assets/logo/\bAngryLogo';
+import AngryLogo from '@/assets/logo/AngryLogo';
 import Button from '@/components/common/button/Button';
 import { Typography } from '@/components/common/typography/Typography';
 import ERROR_RESPONSES from '@/constants/errorMessages';

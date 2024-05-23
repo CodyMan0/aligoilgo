@@ -1,14 +1,14 @@
 import App from '@/App';
 import { ROUTER_PATHS } from '@/constants/routerPath';
 import { RoutineProvider } from '@/context/RoutineContext';
-import { SharedStateProvider } from '@/context/SharedStateContext';
 import KakaoLoginPage from '@/pages/KaKaoLogin';
 import LandingPage from '@/pages/LandingPage';
 import NotFoundPage from '@/pages/NotFoundPage';
+import OnboardingPage from '@/pages/onboardingPage';
 import SeedDetailPage from '@/pages/seedDetailPage';
 import SeedPage from '@/pages/seedPage';
 import { default as Mypage } from '../pages/Mypage';
-import SeedCreatePage from '../pages/TargetCreatePage';
+import SeedCreatePage from '../pages/SeedCreatePage';
 
 export const routerChildrenInfo = [
   {
@@ -26,11 +26,9 @@ export const routerChildrenInfo = [
   {
     path: ROUTER_PATHS.TAGET_DETAIL,
     element: (
-      <SharedStateProvider>
-        <RoutineProvider>
-          <SeedDetailPage />
-        </RoutineProvider>
-      </SharedStateProvider>
+      <RoutineProvider>
+        <SeedDetailPage />
+      </RoutineProvider>
     ),
   },
   {
@@ -40,6 +38,10 @@ export const routerChildrenInfo = [
   {
     path: ROUTER_PATHS.MYPAGE,
     element: <Mypage />,
+  },
+  {
+    path: ROUTER_PATHS.ONBOARDING,
+    element: <OnboardingPage />,
   },
   {
     path: '*',

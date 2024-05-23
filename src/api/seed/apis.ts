@@ -6,7 +6,7 @@ import {
   SeedPaginatedResponseType,
   SeedResponseType,
 } from '@/types/target/type';
-import { OwnSeedType } from '@/types/user/type';
+import { CheerUserResponseType, OwnSeedType } from '@/types/user/type';
 
 const seedAPI = {
   /** 모든 목표 페이지 네이션 전체 조회 */
@@ -18,7 +18,7 @@ const seedAPI = {
   },
 
   /** 상세 씨앗 정보 조회 */
-getSeedDetails: async (seedId: number) => {
+  getSeedDetails: async (seedId: number) => {
     const { data } = await authInstance.get<DetailSeedType>(API_PATHS.SEED_DETAIL(seedId));
     return data;
   },
@@ -33,8 +33,8 @@ getSeedDetails: async (seedId: number) => {
     return data;
   },
 
-   /** 마이 페이지에 보일 데이터 조회 */
-   getMyInfo: async () => {
+  /** 마이 페이지에 보일 데이터 조회 */
+  getMyInfo: async () => {
     const { data } = await authInstance.get<OwnSeedType>(API_PATHS.SEED_MINE);
     return data;
   },
@@ -61,10 +61,23 @@ getSeedDetails: async (seedId: number) => {
 
   /** 공유시 사용할 유저 정보 없이 상세 씨앗 정보 조회 */
   getDetailSeedAsGuest: async (seedId: number) => {
-    const { data } = await baseInstance.get<DetailSeedType>(API_PATHS.SEED_DETAIL_NO_CREDENTIAL(seedId));
+    const { data } = await baseInstance.get<DetailSeedType>(
+      API_PATHS.SEED_DETAIL_NO_CREDENTIAL(seedId),
+    );
     return data;
   },
 
+  /** 좋아요 (응원하기) 생성 */
+  patchSeedLikes: async (seedId: number) => {
+    const { data } = await authInstance.patch(API_PATHS.SEED_LIKE(seedId));
+    return data;
+  },
+
+    /** 응원한 친구 목록 요청 */
+  getSeedLikesUserList: async (seedId: number) => {
+      const { data } = await authInstance.get<CheerUserResponseType>(API_PATHS.SEED_LIKE(seedId));
+      return data;
+    },
 };
 
 export default seedAPI;

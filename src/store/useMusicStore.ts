@@ -4,15 +4,19 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import STORAGE_KEYS from '@/constants/storageKeys';
 
 interface SoundState {
-  isPlaying: boolean;
-  togglePlaying: VoidFunction;
+  isRainPlaying: boolean;
+  isSunPlaying: boolean;
+  toggleRainPlaying: VoidFunction;
+  toggleSunPlaying: VoidFunction;
 }
 
 const useMusicStore = create<SoundState>()(
   persist(
     (set) => ({
-      isPlaying: false,
-      togglePlaying: () => set((state) => ({ isPlaying: !state.isPlaying })),
+      isRainPlaying: false,
+      isSunPlaying: false,
+      toggleRainPlaying: () => set((state) => ({ isRainPlaying: !state.isRainPlaying })),
+      toggleSunPlaying: () => set((state) => ({ isSunPlaying: !state.isSunPlaying })),
     }),
     {
       name: STORAGE_KEYS.isPlayingMusic,

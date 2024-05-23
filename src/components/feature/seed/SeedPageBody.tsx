@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { SwiperSlide } from 'swiper/react';
 
 import { ToolTip } from '@/components/common/toolTip';
-import SeedList from '@/components/target/seedList';
+import SeedList from '@/components/feature/seed/seedList';
 import useAnimationWithTimeout from '@/hooks/useAnimationWithTimeout';
 import useFilteringSeed from '@/hooks/useGetPaginatedTarget';
 import { SeedSwiper } from './SeedSwiper';
