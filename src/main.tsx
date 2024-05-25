@@ -16,7 +16,6 @@ Sentry.init({
     Sentry.replayIntegration({
       maskAllText: false,
       blockAllMedia: false,
-      networkDetailAllowUrls: [import.meta.env.VITE_SERVER_URL],
     }),
   ],
   environment: import.meta.env.PROD ? 'production' : 'development',

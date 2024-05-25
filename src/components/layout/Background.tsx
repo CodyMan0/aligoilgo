@@ -8,7 +8,7 @@ const Background = ({ children }: BackgroundProps) => {
   //TODO : 데스크탑 이미지 해상도 문제 해결 필요
 
   return (
-    <div className={`bg-[url('/background.png')] bg-no-repeat bg-cover bg-center`}>{children}</div>
+    <div className={`bg-[url('/background.webp')] bg-no-repeat bg-cover bg-center`}>{children}</div>
   );
 };
 
