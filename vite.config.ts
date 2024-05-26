@@ -16,7 +16,7 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     dir: 'ltr',
     display: 'standalone',
     name: '씨앗 모아',
-    orientation: 'any',
+    orientation: 'portrait',
     scope: '/',
     short_name: '씨앗 모아',
     start_url: '/',
