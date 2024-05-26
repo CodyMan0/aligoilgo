@@ -14,7 +14,7 @@ export type ToastInterface =
 
 export const ToastContext = createContext<ToastInterface | null>(null);
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const ToastUpdateContext = createContext((toastInterface: ToastInterface | null) => {});
+export const ToastUpdateContext = createContext((_toastInterface: ToastInterface | null) => {});
 
 const ToastProvider = ({ children }: PropsWithChildren) => {
   const [toast, setToast] = useState<ToastInterface | null>(null);
